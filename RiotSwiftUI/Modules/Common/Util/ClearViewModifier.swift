@@ -58,7 +58,7 @@ struct ClearViewModifier: ViewModifier
                 }) {
                     Image(systemName: "xmark.circle.fill")
                         .renderingMode(.template)
-                        .foregroundColor(theme.colors.quarterlyContent)
+                        .foregroundColor(theme.colors.quaternaryContent)
                 }
                 .padding(EdgeInsets(top: alignment == .top ? 8 : 0, leading: 0, bottom: alignment == .bottom ? 8 : 0, trailing: 8))
             }

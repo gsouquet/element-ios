@@ -30,12 +30,34 @@ import DesignTokens
     /// may contain more design components in future, like icons, audio files etc.
 }
 
-#warning("Temporary missing colors")
 public extension ElementUIColors {
+    // MARK: - Legacy
     var quarterlyContent: UIColor { quaternaryContent }
     var navigation: UIColor { system }
-    var tile: UIColor { system }
-    var separator: UIColor { system }
+    var tile: UIColor {
+        let lightColor = UIColor(rgb: 0xF3F8FD)
+        let darkColor = quinaryContent
+        
+        // Use the forced user interface style if set, otherwise use the dynamic color.
+        guard let traitCollection = self.traitCollection else {
+            return UIColor { $0.userInterfaceStyle == .light ? lightColor : darkColor }
+        }
+        
+        return traitCollection.userInterfaceStyle == .light ? lightColor : darkColor
+    }
+    var separator: UIColor {
+        let lightColor = quinaryContent
+        let darkColor = system
+        
+        // Use the forced user interface style if set, otherwise use the dynamic color.
+        guard let traitCollection = self.traitCollection else {
+            return UIColor { $0.userInterfaceStyle == .light ? lightColor : darkColor }
+        }
+        
+        return traitCollection.userInterfaceStyle == .light ? lightColor : darkColor
+    }
+    
+    // TODO: Generate in DesignTokens repo.
     var namesAndAvatars: [UIColor] {
         [
             globalAzure,
